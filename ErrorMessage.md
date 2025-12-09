@@ -64,8 +64,9 @@ int main()
 ```
 
 解説
-
-`}` がないのが 原因です。このエラーは大抵の場合、括弧の閉じ忘れか、括弧が2バイト文字 （俗に言う全角）の可能性があります。どこで括弧の対応がおかしくなっているかは、 エディタのインデント機能（emacs の M-x indent-regionなど） を使うと探しやすいです（括弧の対応がおかしい部分でインデントがずれる）。
+- `}` がないのが 原因です。
+- このエラーは大抵の場合、括弧の閉じ忘れか、括弧が2バイト文字 （俗に言う全角）の可能性があります。
+- どこで括弧の対応がおかしくなっているかは、 エディタのインデント機能（emacs の M-x indent-regionなど） を使うと探しやすいです（括弧の対応がおかしい部分でインデントがずれる）。
 
 
 ### expected ‘;’ before ‘}’ token
@@ -130,15 +131,14 @@ int main()
 
 解説
 > 一見、どこにエラーがあるのか分かりにくいですが、このエラーが出た場合は 全角の文字が紛れ込んでいる可能性があります。この例では、6行目の最後に 全角スペースが入っています。この他、括弧などが全角になっている場合も、 このエラーが発生します。
-
-
-CEDだとカッコが全角になっている場合は`error: unknown type name ...`のようなエラーも出るようです。
+- CEDだとカッコが全角になっている場合は`error: unknown type name ...`のようなエラーも出るようです。
 
 
 ### missing terminating " character
 
-訳：終了文字「"」がありません
+- 訳：終了文字「"」がありません
 エラーの生じるコード例
+```
 #include <stdio.h>
 
 int main()
@@ -150,9 +150,10 @@ int main()
     }
     printf("\n");
 }
-
+```
 
 ターミナルの表示
+```
 5_unterminated_string_or_character_constant.c: In function ‘main’:
 5_unterminated_string_or_character_constant.c:8:16: warning: missing terminating " character
     8 |         printf("%d\n, i);
@@ -169,20 +170,21 @@ int main()
       |                ;
     9 |     }
       |     ~ 
+```
 
 
-
-前半2つの警告とエラーが、「”」の抜けを指摘している
-後半二つは、それに伴って「;」や「}」が認識されずに起こっているもの。
+- 前半2つの警告とエラーが、「”」の抜けを指摘している
+- 後半二つは、それに伴って「;」や「}」が認識されずに起こっているもの。
 
 解説
-これは " を閉じ忘れている場合に起きます。
+- これは " を閉じ忘れている場合に起きます。
 
 
 ### too few arguments to function ‘pow’
 
-訳：関数「pow」の引数が少なすぎます
+- 訳：関数「pow」の引数が少なすぎます
 エラーの生じるコード例
+```
 #include <stdio.h>
 #include <math.h>
 
@@ -191,9 +193,10 @@ int main()
     printf("%f\\n", pow(10));
     return 0;
 }
-
+```
 
 ターミナルの表示
+```
 tmp.c: In function ‘main’:
 tmp.c:6:20: error: too few arguments to function ‘pow’
     6 |     printf("%f\\n", pow(10));
@@ -205,15 +208,16 @@ In file included from /usr/include/features.h:486,
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:140:1: note: declared here
   140 | __MATHCALL_VEC (pow,, (_Mdouble_ __x, _Mdouble_ __y));
       | ^~~~~~~~~~~~~~
-
+```
 
 解説
-pow() は引数が 2つなのに、1つしか与えていないので、エラーが出ています。 引数として何を与えるかを確認して、きちんと引数を与えましょう。
+- pow() は引数が 2つなのに、1つしか与えていないので、エラーが出ています。 引数として何を与えるかを確認して、きちんと引数を与えましょう。
 
 
 ### too many arguments to function ‘pow’
-訳：関数「pow」の引数が多すぎます
+- 訳：関数「pow」の引数が多すぎます
 エラーの生じるコード例
+```
 #include <stdio.h>
 #include <math.h>
 
@@ -236,14 +240,15 @@ In file included from /usr/include/features.h:486,
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:140:1: note: declared here
   140 | __MATHCALL_VEC (pow,, (_Mdouble_ __x, _Mdouble_ __y));
       | ^~~~~~~~~~~~~~
-
+```
 
 解説
-pow() は引数が 2つなのに、3つも与えているので、エラーが出ています。 引数として何を与えるかを確認して、きちんと引数を与えましょう。
+- pow() は引数が 2つなのに、3つも与えているので、エラーが出ています。 引数として何を与えるかを確認して、きちんと引数を与えましょう。
 
 
 ### そのようなファイルやディレクトリはありません
 エラーの生じるコード例
+```
 #include <stdio.h>
 #include <stdlb.h>    // stdlib.h のタイプミス
 
@@ -252,22 +257,24 @@ int main()
     printf("%f\n", 2.0);
     return 0;
 }
-
+```
 
 ターミナルの表示
+```
 12_no_such_file_or_directory.c:2:10: fatal error: stdlb.h: そのようなファイルやディレクトリはありません
     2 | #include <stdlb.h>    // stdlib.h のタイプミス
       |          ^~~~~~~~~
 compilation terminated.
-
-
-
-stdlb.h というファイルは存在しないのにincludeしようとしているため、エラーになります。 
+```
+解説
+- stdlb.h というファイルは存在しないのにincludeしようとしているため、エラーになります。 
 
 ### invalid preprocessing directive `命令'
 
-訳：プリプロセスに、無効な`命令'が書かれています。
+- 訳：プリプロセスに、無効な`命令'が書かれています。
+
 エラーの生じるコード例
+```
 #include <stdio.h>
 #includ <math.h>    // ここが間違っている
 
@@ -275,23 +282,24 @@ int main()
 {
     printf("Hello\n");
 }
-
+```
 
 ターミナルの表示
+```
 13_invalid_preprocessing_directive.c:2:2: error: invalid preprocessing directive #includ; did you mean #include?
     2 | #includ <math.h>
       |  ^~~~~~
       |  include
-
+```
 
 解説
-綴りとかがあっているかを確認しましょう。 include の綴りを間違えています。
+- 綴りとかがあっているかを確認しましょう。 例では`include` の綴りを間違えています。
 
 
 ### conflicting types for ‘i’; have ‘double’
-
-訳： 「i」の型が矛盾しています。「double」があります
+- 訳： 「i」の型が矛盾しています。「double」があります
 エラーの生じるコード例
+```
 #include <stdio.h>
 
 int main()
@@ -304,9 +312,10 @@ int main()
 
     return 0;
 }
-
+```
 
 ターミナルの表示
+```
 14_redeclaration.c: In function ‘main’:
 14_redeclaration.c:6:12: error: conflicting types for ‘i’; have ‘double’
     6 |     double i;
@@ -314,12 +323,11 @@ int main()
 14_redeclaration.c:5:9: note: previous declaration of ‘i’ with type ‘int’
     5 |     int i;
       |         ^
-
+```
 
 解説
-
-同じ名前の変数を 2回宣言しています。
-片方の変数名を変更するか、消しましょう。
+- 同じ名前の変数を 2回宣言しています。
+- 片方の変数名を変更するか、消しましょう。
 
 
 
@@ -386,6 +394,7 @@ $ ./a.out
 ```
  
 通常、何の警告も出ずコンパイルできますが、-Wshadowオプションをつけてコンパイルすると警告を出してくれます。
+```
 $ gcc 14-3_redeclaration.c -Wshadow
 14-3_redeclaration.c: In function ‘main’:
 14-3_redeclaration.c:7:13: warning: declaration of ‘i’ shadows a previous local [-Wshadow]
@@ -394,7 +403,7 @@ $ gcc 14-3_redeclaration.c -Wshadow
 14-3_redeclaration.c:5:9: note: shadowed declaration is here
     5 |     int i = 1;
       |         ^
-
+```
   
 
 ### value required as left operand of assignment
@@ -419,14 +428,10 @@ tmp.c:6:15: error: lvalue required as left operand of assignment
       |               ^
 ```
 解説
-
-代入の右辺は様々な計算式を書けるが、左辺は代入先の変数でなければならない。
-無効な左辺値に代入しようとすることは考えにくいので、 通常このエラーは、 誤って代入を書いたか、 左辺値の書き方を間違えたかのどちらかである。
-前者の典型的な例は、比較演算子と代入演算子の書き間違いである。
-
-
-
-上記の例の場合は、「==」としなければいけないところ「=」としてしまったため、「左辺i+1 に右辺 3 を代入しようとしている」と解釈されてエラーが出てしまっています。if 文の中では比較演算子「==」を使いましょう。
+- 代入の右辺は様々な計算式を書けるが、左辺は代入先の変数でなければならない。
+- 無効な左辺値に代入しようとすることは考えにくいので、 通常このエラーは、 誤って代入を書いたか、 左辺値の書き方を間違えたかのどちらかである。
+- 前者の典型的な例は、比較演算子と代入演算子の書き間違いである。
+- 上記の例の場合は、「==」としなければいけないところ「=」としてしまったため、「左辺i+1 に右辺 3 を代入しようとしている」と解釈されてエラーが出てしまっています。if 文の中では比較演算子「==」を使いましょう。
 
 ### assignment to expression with array type
 
@@ -617,20 +622,19 @@ int main()
 ```
 解説
 - 演算子opに対し、 その演算が適用できない式 (型type1とtype2) が与えられている。
+- 自分で定義した構造体同士で二項演算子（+や-、==など）を使用することはできません。自分で比較用の関数などを作ると良いでしょう。
+- Python などほかの言語だと、自分で定義した構造体などの+や-などを自分で定義することもできた気がしますが、Cにはそのような機能は無いようです。
 
 
-自分で定義した構造体同士で二項演算子（+や-、==など）を使用することはできません。自分で比較用の関数などを作ると良いでしょう。
-Python などほかの言語だと、自分で定義した構造体などの+や-などを自分で定義することもできた気がしますが、Cにはそのような機能は無いようです。
-
-
-よくある警告
+# よくある警告
 
 以下は-Wallオプションを付けてコンパイルしています。
 
-implicit declaration of function ‘prnitf’
+### implicit declaration of function ‘prnitf’
 
-訳：警告: 関数 'prnitf' の暗黙的な宣言
+- 訳：警告: 関数 'prnitf' の暗黙的な宣言
 エラーの生じるコード例
+```
 #include <stdio.h>
 
 int main()
@@ -641,28 +645,31 @@ int main()
         prnitf("%d\n", i);
     }
 }
-
+```
 
 ターミナルの表示
+```
 6_undefined_reference_to.c: In function ‘main’:
 6_undefined_reference_to.c:8:9: warning: implicit declaration of function ‘prnitf’; did you mean ‘printf’? [-Wimplicit-function-declaration]
     8 |         prnitf("%d\n", i);
       |         ^~~~~~
       |         printf
 /usr/bin/ld: /tmp/cc4YIa1z.o: in function `main':
+```
 
 
+- cedの場合、printff関数名タイプミスはエラーではなく警告になるようです（ただし実行ファイルは出力されない）
 
-cedの場合、printff関数名タイプミスはエラーではなく警告になるようです（ただし実行ファイルは出力されない）
 解説
-このエラーが出た場合は、大抵関数名の打ち間違いです。この例では、 printf としなければならないところを prnitf と書いてしまっています。
+- このエラーが出た場合は、大抵関数名の打ち間違いです。この例では、 printf としなければならないところを prnitf と書いてしまっています。
 
 
 
-control reaches end of non-void function
+### control reaches end of non-void function
+- 訳：制御が非 void 関数の終りに到達しました
 
-訳：制御が非 void 関数の終りに到達しました
 警告の生じるコード例
+```
 #include <stdio.h>
 
 int func(int n)    // 返り値がint型の関数
@@ -677,29 +684,31 @@ int main()
     func(1);
     return 0;
 }
+```
 
 ターミナルの表示
+```
 1_reaches_end_of_no-void.c: In function ‘func’:
 1_reaches_end_of_no-void.c:8:1: warning: control reaches end of non-void function [-Wreturn-type]
     8 | }
       | ^
+```
 
 解説
+- 返り値がある(void型ではない)関数の中で、 returnせずに関数末に到達している。
+- 関数funcの返り値はint型なので、 必ず整数値を返さなければならない。 上記のコードでは、nの値が0のとき、 returnがないため返り値を返さずに関数を終了してしまう。
+- 関数の定義内で、宣言した型の返り値をreturnする。
 
-返り値がある(void型ではない)関数の中で、 returnせずに関数末に到達している。
-関数funcの返り値はint型なので、 必ず整数値を返さなければならない。 上記のコードでは、nの値が0のとき、 returnがないため返り値を返さずに関数を終了してしまう。
-関数の定義内で、宣言した型の返り値をreturnする。
+    - returnしないと、予想外の値が返されバグに繋がります。手元でfunc(1)の値をprintしたところ、「540655971」という訳の分からない数値が表示されました。関数定義の通りにreturnしましょう。
+    - if文がネストされている時などに生じやすいミスなので、フォーマッタでコードを整理しましょう。
+    - main関数もint型なので、return 0 しておきましょう。
 
+### return type defaults to ‘int’
 
+- 訳：戻り値の型をデフォルトの ‘int’ にします
 
-returnしないと、予想外の値が返されバグに繋がります。手元でfunc(1)の値をprintしたところ、「540655971」という訳の分からない数値が表示されました。関数定義の通りにreturnしましょう。
-if文がネストされている時などに生じやすいミスなので、フォーマッタでコードを整理しましょう。
-main関数もint型なので、return 0 しておきましょう。
-
-return type defaults to ‘int’
-
-訳：戻り値の型をデフォルトの ‘int’ にします
 警告の生じるコード例
+```
 #include <stdio.h>
 
 func(int n)    // 返り値が未定義
@@ -713,27 +722,27 @@ int main()
     printf("%d\n", func(1));
     return 0;
 }
+```
 
 ターミナルの表示
+```
 2_return_type_default.c:3:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
     3 | func(int n)    // 返り値がint型の関数
       | ^~~~
-
+```
 解説
-
-関数を定義する際に、返り値の型を指定していない。
-関数を定義する際に返り値の型を省略すると、 デフォルトで int 型として扱われ、この警告が出力される。 上の例のように、実際に int 型を変えす関数であれば実害はないが、 もし異なる型を返すコードを書いている場合は正常動作しない可能性がある。
-関数の定義の際に、関数名の前に返り値の型を記述する。 とくに、返すものがない場合は、必ず関数をvoid型で宣言する。 未指定だとその関数は「int 型を返す」ことになってしまうからである。
-
-
-
-ちゃんと返り値を定義しましょう。返り値が無ければvoidにしましょう。
+- 関数を定義する際に、返り値の型を指定していない。
+- 関数を定義する際に返り値の型を省略すると、 デフォルトで int 型として扱われ、この警告が出力される。 上の例のように、実際に int 型を変えす関数であれば実害はないが、 もし異なる型を返すコードを書いている場合は正常動作しない可能性がある。
+- 関数の定義の際に、関数名の前に返り値の型を記述する。 とくに、返すものがない場合は、必ず関数をvoid型で宣言する。 未指定だとその関数は「int 型を返す」ことになってしまうからである。
+`ちゃんと返り値を定義しましょう。返り値が無ければvoidにしましょう。`
 
 
-suggest parentheses around assignment used as truth value
+### suggest parentheses around assignment used as truth value
 
-訳：真理値として使用される代入を括弧で囲むことを提案します
+- 訳：真理値として使用される代入を括弧で囲むことを提案します
+
 警告の生じるコード例
+```
 #include <stdio.h>
 
 int main()
@@ -745,34 +754,36 @@ int main()
     }
     return 0;
 }
-
+```
 ターミナルの表示
+```
 3_used_as_truth_value.c: In function ‘main’:
 3_used_as_truth_value.c:6:9: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
     6 |     if (a = 1)
       |         ^
-
+```
 解説
-
-if, whileなどの条件式に、代入文が書かれている。
-上級者が意図的にやっているのでない限り、 比較演算子「==」の代わりに誤って代入演算子「=」を書いている
-おそらく「aの値が1のとき」と書くつもりだったが、 「aに1を代入」している。 文法的に誤りではないので、警告を無視すればプログラムを実行できるが、 この行でaの値が1になり、条件文は常に成立する (代入した値1が条件の真偽値: 非0なので真)。 したがって、おそらく誤動作する。
-（if (a = b) という例について）この例では、「bをaに代入」したうえで、 「bの値が真(非0)なら条件が成立」する。 一般的には「a==b」つまり 「aとbの値が一致したら条件が成立」 の書き間違いの可能性が高いので警告が出る。 意図的にやりたい場合は「if ((a=b)){」のように 代入式を括弧で括れば意図的なものだとコンパイラが認識し、警告は出なくなる。 しかし、コードがそれほど短くなるわけではなく、 読みにくく／勘違いしやすくなるデメリットの方が大きいので、 以下のように書く方がよい。
-
+- if, whileなどの条件式に、代入文が書かれている。
+- 上級者が意図的にやっているのでない限り、 比較演算子「==」の代わりに誤って代入演算子「=」を書いている
+- おそらく「aの値が1のとき」と書くつもりだったが、 「aに1を代入」している。 文法的に誤りではないので、警告を無視すればプログラムを実行できるが、 この行でaの値が1になり、条件文は常に成立する (代入した値1が条件の真偽値: 非0なので真)。 したがって、おそらく誤動作する。
+- （if (a = b) という例について）この例では、「bをaに代入」したうえで、 「bの値が真(非0)なら条件が成立」する。 一般的には「a==b」つまり 「aとbの値が一致したら条件が成立」 の書き間違いの可能性が高いので警告が出る。 意図的にやりたい場合は「if ((a=b)){」のように 代入式を括弧で括れば意図的なものだとコンパイラが認識し、警告は出なくなる。 しかし、コードがそれほど短くなるわけではなく、 読みにくく／勘違いしやすくなるデメリットの方が大きいので、 以下のように書く方がよい。
 
 
+<!-- 
 if文の条件式は、a = 1、すなわちtrueになるので、if文の中が実行されます。しかし、コンパイラが「おそらくa==1の書き間違いだろう」と解釈して、警告を出してくれます。実際、書き間違いの場合が多いと思います。
 意図的にやっているのであれば、if ((a = b))のようにカッコでもう一回覆ってしまえば警告は出ないそうです。でも、読みにくいので書き換えた方が良いです。おすすめしません。
 ちなみに、「while ((c = fgetc(fp)) != EOF){...};」のような書き方を見かけたことがある人もいるかもしれませんが、このようなループ文では慣用句的に条件式内の代入を使うことが多いです。
+ -->
 
-ignoring return value of 'fgets' declare with attribute 'warn_unused_result'
+### ignoring return value of 'fgets' declare with attribute 'warn_unused_result'
 
 
 
-unused variable ‘var’
+### unused variable ‘var’
+- 訳：使用されない変数 ‘var’ です 
 
-訳：使用されない変数 ‘var’ です 
 警告の生じるコード例
+```
 #include <stdio.h>
 
 int main()
@@ -788,8 +799,9 @@ int main()
     
     return 0;
 }
-
+```
 ターミナルの表示
+```
 4_unused_variable.c: In function ‘main’:
 4_unused_variable.c:5:22: warning: variable ‘b’ set but not used [-Wunused-but-set-variable]
     5 |     int i, j, a[10], b[10];    // jはどこにも使っていない
@@ -797,28 +809,26 @@ int main()
 4_unused_variable.c:5:12: warning: unused variable ‘j’ [-Wunused-variable]
     5 |     int i, j, a[10], b[10];    // jはどこにも使っていない
       |            ^
-
+```
 解説
+- 変数varの宣言があるが、一度も使っていない。
+- 使うつもりで宣言したが、結局使っていない変数ならば、宣言を削除する。
+- 使っていない変数があること自体はあまり実害がないので、 後で使うつもりで先に変数だけ宣言しておいた、 など心当たりがあるなら、 この警告は無視してもかまわない。
 
-変数varの宣言があるが、一度も使っていない。
-使うつもりで宣言したが、結局使っていない変数ならば、宣言を削除する。
-使っていない変数があること自体はあまり実害がないので、 後で使うつもりで先に変数だけ宣言しておいた、 など心当たりがあるなら、 この警告は無視してもかまわない。
-
-
+<!-- 
 
 この例の場合、jは使っていないので当然警告が出る。
 配列bは一見使っているので問題なさそうだが、書き込むだけ書き込んで後は放置しているだけの変数なので、警告が出る。
+ -->
 
 
 
 
-TAが受けた質問から
+### warning: ‘i’ is used uninitialized
 
-TAをやっていて受けた質問などを元にいくつか作成
-warning: ‘i’ is used uninitialized
-
-訳：警告: ‘i’ が初期化されていない状態で使用されています
+- 訳：警告: ‘i’ が初期化されていない状態で使用されています
 エラーの生じるコード例
+```
 #include <stdio.h>
 
 int main()
@@ -826,23 +836,24 @@ int main()
     int i;    // iの値が初期化されていない
     printf("%d", i);
 }
-
+```
 
 ターミナルの表示
+```
 $ gcc TA1_uninitialized_variable.c -Wall
 TA1_uninitialized_variable.c: In function ‘main’:
 TA1_uninitialized_variable.c:6:5: warning: ‘i’ is used uninitialized [-Wuninitialized]
     6 |     printf("%d", i);
       |     ^~~~~~~~~~~~~~~
+```
 
+- 注意：gccのみのコンパイルだと、警告は出ない。 -Wall オプションを付ける（or チェッカーでコンパイルする）とこの警告が出る。
 
+### warning: implicit declaration of function ‘malloc’
 
-注意：通常のコンパイルだと、警告は出ない。 -Wall オプションを付ける（or チェッカーでコンパイルする）とこの警告が出る。
-
-warning: implicit declaration of function ‘malloc’
-
-訳：警告: 関数 'malloc' の暗黙的な宣言
+- 訳：警告: 関数 'malloc' の暗黙的な宣言
 エラーの生じるコード例
+```
 #include <stdio.h>
 // #include <stdlib.h>    // mallocを使うときは stdlib.h のインクルードが必要です
 
@@ -860,9 +871,10 @@ int main()
     free(p);    // 忘れないこと
     return 0;
 }
-
+```
 
 ターミナルの表示
+```
 TA3_stdlib_malloc.c: In function ‘main’:
 TA3_stdlib_malloc.c:8:15: warning: implicit declaration of function ‘malloc’ [-Wimplicit-function-declaration]
     8 |     p = (int*)malloc(sizeof(int) * len);    // malloc を使う
@@ -881,16 +893,15 @@ TA3_stdlib_malloc.c:15:5: warning: implicit declaration of function ‘free’ [
 TA3_stdlib_malloc.c:15:5: note: include ‘<stdlib.h>’ or provide a declaration of ‘free’
 TA3_stdlib_malloc.c:15:5: warning: incompatible implicit declaration of built-in function ‘free’ [-Wbuiltin-declaration-mismatch]
 TA3_stdlib_malloc.c:15:5: note: include ‘<stdlib.h>’ or provide a declaration of ‘free’
-
+```
 
 解説
+- mallocを使うときは  #include <stdlib.h> をしましょう
 
-mallocを使うときは  #include <stdlib.h> をしましょう
+### printf が正しく出力しない
+- printf が変な文字や数値を出力するなどした場合は、フォーマット指定子を確認してください。
 
-printf が正しく出力しない
-
-printf が変な文字や数値を出力するなどした場合は、フォーマット指定子を確認してください。
-
+```
 #include <stdio.h>
 
 int main()
@@ -899,14 +910,14 @@ int main()
     printf("%%dだと：「%d」\n", i);
     printf("%%cだと：「%c」\n", i);
 }
-
+```
 
 
 実行結果は以下
-
+```
 %dだと：「1」
     %cだと：「」
-
+```
 
 
 文字列の読み込みに必要な配列長
