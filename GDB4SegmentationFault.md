@@ -3,7 +3,7 @@
  
 # GDBの超ざっくりな使い方
 
-- コンパイル時に-g3オプションを付けます。 例：`gcc -g3 xxx.c`   
+- コンパイル時に`-g3`オプションを付けます。 例：`gcc -g3 xxx.c`   
 - gdbコマンドで実行します。 例：`gdb ./a.out`   
 - (gdb) みたいに表示されたら、runと入力します。 ブレークポイントなどの設定もできます。気になったら調べてみてください。
 
@@ -15,7 +15,7 @@
 
 ### エラーの生じるコード例（1）
 - `&`のつけ忘れ
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -40,7 +40,7 @@ int main()
 - 警告は出ますが、コンパイルは通ります。
 
 ターミナルの表示　実行時
-```
+```bash
 $ ./a.out
 1
 Segmentation fault (コアダンプ)
@@ -128,7 +128,7 @@ int main()
 ```
 
 実行結果
-```
+```bash
 $ ./a.out
 Segmentation fault (コアダンプ)
 ```
@@ -167,7 +167,7 @@ Segmentation fault (コアダンプ)
 ```
 
 GDBでデバッグした際の表示
-```
+```bash
 (gdb) run
 Starting program: /home0/y2024/s2430064/TA_JRE3/error_sample/SegmentationFault/a.out 
 [Thread debugging using libthread_db enabled]
