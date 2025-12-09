@@ -109,7 +109,7 @@ int main()
 - 訳：プログラム内の迷子の「\343」
 
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -138,7 +138,7 @@ int main()
 
 - 訳：終了文字「"」がありません
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -184,7 +184,7 @@ int main()
 
 - 訳：関数「pow」の引数が少なすぎます
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 #include <math.h>
 
@@ -217,7 +217,7 @@ In file included from /usr/include/features.h:486,
 ### too many arguments to function ‘pow’
 - 訳：関数「pow」の引数が多すぎます
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 #include <math.h>
 
@@ -248,7 +248,7 @@ In file included from /usr/include/features.h:486,
 
 ### そのようなファイルやディレクトリはありません
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 #include <stdlb.h>    // stdlib.h のタイプミス
 
@@ -274,7 +274,7 @@ compilation terminated.
 - 訳：プリプロセスに、無効な`命令'が書かれています。
 
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 #includ <math.h>    // ここが間違っている
 
@@ -299,7 +299,7 @@ int main()
 ### conflicting types for ‘i’; have ‘double’
 - 訳： 「i」の型が矛盾しています。「double」があります
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -336,7 +336,7 @@ int main()
 - 訳：連結のない「i」の再宣言
 
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -369,7 +369,7 @@ int main()
 その他、同じ変数名に関する注意点 スコープ内外で同じ変数名を定義すると、別物の変数として扱われます 
 ただしスコープの内側の変数が優先されます。 
 コンパイル時にオプションを付けないと、特に警告やエラーは出ません
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -410,7 +410,7 @@ $ gcc 14-3_redeclaration.c -Wshadow
 - 訳：代入の左側の被演算子として左辺値が必要です
 
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -438,7 +438,7 @@ tmp.c:6:15: error: lvalue required as left operand of assignment
 - 訳：配列型の式への代入
 - 
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -473,7 +473,7 @@ int main()
 
 - 訳：変数またはフィールド...がvoidと宣言
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -504,7 +504,7 @@ int main()
 - 訳：構造体名 は メンバ名 という名前のメンバを持っていません
 
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 typedef struct {
@@ -536,7 +536,7 @@ int main()
 - 訳：構造体または共用体ではない何かのメンバ ‘mem’ の要求です
 
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 typedef struct {
@@ -584,7 +584,7 @@ int main()
 - 訳：二項演算子 op への無効な被演算子です (‘type1’ と ‘type2’)
 
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 typedef struct {
@@ -634,7 +634,7 @@ int main()
 
 - 訳：警告: 関数 'prnitf' の暗黙的な宣言
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -669,7 +669,7 @@ int main()
 - 訳：制御が非 void 関数の終りに到達しました
 
 警告の生じるコード例
-```
+```c
 #include <stdio.h>
 
 int func(int n)    // 返り値がint型の関数
@@ -708,7 +708,7 @@ int main()
 - 訳：戻り値の型をデフォルトの ‘int’ にします
 
 警告の生じるコード例
-```
+```c
 #include <stdio.h>
 
 func(int n)    // 返り値が未定義
@@ -742,7 +742,7 @@ int main()
 - 訳：真理値として使用される代入を括弧で囲むことを提案します
 
 警告の生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -783,7 +783,7 @@ if文の条件式は、a = 1、すなわちtrueになるので、if文の中が�
 - 訳：使用されない変数 ‘var’ です 
 
 警告の生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -828,7 +828,7 @@ int main()
 
 - 訳：警告: ‘i’ が初期化されていない状態で使用されています
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -853,7 +853,7 @@ TA1_uninitialized_variable.c:6:5: warning: ‘i’ is used uninitialized [-Wunin
 
 - 訳：警告: 関数 'malloc' の暗黙的な宣言
 エラーの生じるコード例
-```
+```c
 #include <stdio.h>
 // #include <stdlib.h>    // mallocを使うときは stdlib.h のインクルードが必要です
 
@@ -901,7 +901,7 @@ TA3_stdlib_malloc.c:15:5: note: include ‘<stdlib.h>’ or provide a declaratio
 ### printf が正しく出力しない
 - printf が変な文字や数値を出力するなどした場合は、フォーマット指定子を確認してください。
 
-```
+```c
 #include <stdio.h>
 
 int main()
@@ -921,7 +921,7 @@ int main()
 
 
 文字列の読み込みに必要な配列長
-
+```c
 #include <stdio.h>
 
 int main()
@@ -931,15 +931,15 @@ int main()
     printf("%s\n", buf);
     return 0;
 }
-
+```
 
 
 「Hello」と入力すると…
-
+```
 $ ./a.out
     Hello
     Hell
-
+```
 
 
 「Hell」までしか出力されない…
@@ -948,11 +948,11 @@ $ ./a.out
 参考にした元のサイトの「/usr/include/stdio.h:261: parse error before `__va_list'」に関しては、元のサイトとエラー表示が異なるため省略
 
 
-Segmentation fault（コアダンプ）
+# Segmentation fault（コアダンプ）
+- 訳：セグメンテーション違反
 
-訳：セグメンテーション違反
-このエラーが起きる原因はあまりにも多すぎるかつ複雑すぎるので、別項目にしました。
-以下はあくまで Segmentation fault の一例です。これ以外の理由でSegmentation fault が出ている場合は原因の特定が大変なので、gdb などのデバッガを使いましょう。
+- このエラーが起きる原因はあまりにも多すぎるかつ複雑すぎるので、別項目にしました。
+- 以下はあくまで Segmentation fault の一例です。これ以外の理由でSegmentation fault が出ている場合は原因の特定が大変なので、gdb などのデバッガを使いましょう。
 
 GDBの超ざっくりな使い方
 
