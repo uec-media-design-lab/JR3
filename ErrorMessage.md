@@ -135,7 +135,7 @@ int main()
 CEDだとカッコが全角になっている場合は`error: unknown type name ...`のようなエラーも出るようです。
 
 
-missing terminating " character
+### missing terminating " character
 
 訳：終了文字「"」がありません
 エラーの生じるコード例
@@ -179,7 +179,7 @@ int main()
 これは " を閉じ忘れている場合に起きます。
 
 
-too few arguments to function ‘pow’
+### too few arguments to function ‘pow’
 
 訳：関数「pow」の引数が少なすぎます
 エラーの生じるコード例
@@ -211,7 +211,7 @@ In file included from /usr/include/features.h:486,
 pow() は引数が 2つなのに、1つしか与えていないので、エラーが出ています。 引数として何を与えるかを確認して、きちんと引数を与えましょう。
 
 
-too many arguments to function ‘pow’
+### too many arguments to function ‘pow’
 訳：関数「pow」の引数が多すぎます
 エラーの生じるコード例
 #include <stdio.h>
@@ -242,7 +242,7 @@ In file included from /usr/include/features.h:486,
 pow() は引数が 2つなのに、3つも与えているので、エラーが出ています。 引数として何を与えるかを確認して、きちんと引数を与えましょう。
 
 
-そのようなファイルやディレクトリはありません
+### そのようなファイルやディレクトリはありません
 エラーの生じるコード例
 #include <stdio.h>
 #include <stdlb.h>    // stdlib.h のタイプミス
@@ -264,7 +264,7 @@ compilation terminated.
 
 stdlb.h というファイルは存在しないのにincludeしようとしているため、エラーになります。 
 
-invalid preprocessing directive `命令'
+### invalid preprocessing directive `命令'
 
 訳：プリプロセスに、無効な`命令'が書かれています。
 エラーの生じるコード例
@@ -288,7 +288,7 @@ int main()
 綴りとかがあっているかを確認しましょう。 include の綴りを間違えています。
 
 
-conflicting types for ‘i’; have ‘double’
+### conflicting types for ‘i’; have ‘double’
 
 訳： 「i」の型が矛盾しています。「double」があります
 エラーの生じるコード例
@@ -323,10 +323,12 @@ int main()
 
 
 
-redeclaration of ‘i’ with no linkage
+### redeclaration of ‘i’ with no linkage
 
-訳：連結のない「i」の再宣言
+- 訳：連結のない「i」の再宣言
+
 エラーの生じるコード例
+```
 #include <stdio.h>
 
 int main()
@@ -339,9 +341,10 @@ int main()
 
     return 0;
 }
-
+```
 
 ターミナルの表示
+```
 14-2_redeclaration.c: In function ‘main’:
 14-2_redeclaration.c:6:9: error: redeclaration of ‘i’ with no linkage
     6 |     int i;
@@ -349,7 +352,7 @@ int main()
 14-2_redeclaration.c:5:9: note: previous declaration of ‘i’ with type ‘int’
     5 |     int i;
       |         ^
-
+```
 
 
 上の例との違いは、同じint型でiを2回宣言していることです。 
@@ -358,6 +361,7 @@ int main()
 その他、同じ変数名に関する注意点 スコープ内外で同じ変数名を定義すると、別物の変数として扱われます 
 ただしスコープの内側の変数が優先されます。 
 コンパイル時にオプションを付けないと、特に警告やエラーは出ません
+```
 #include <stdio.h>
 
 int main()
@@ -372,14 +376,14 @@ int main()
 
     return 0;
 }
-
+```
 
 実行結果
-
+```
 $ ./a.out
 内側のiは 2
 外側のiは 1
-
+```
  
 通常、何の警告も出ずコンパイルできますが、-Wshadowオプションをつけてコンパイルすると警告を出してくれます。
 $ gcc 14-3_redeclaration.c -Wshadow
@@ -393,10 +397,11 @@ $ gcc 14-3_redeclaration.c -Wshadow
 
   
 
-lvalue required as left operand of assignment
+### value required as left operand of assignment
+- 訳：代入の左側の被演算子として左辺値が必要です
 
-訳：代入の左側の被演算子として左辺値が必要です
 エラーの生じるコード例
+```
 #include <stdio.h>
 
 int main()
@@ -405,13 +410,14 @@ int main()
     if (i + 1 = 3) {} 
     return 0;
 }
-
+```
 ターミナルの表示
+```
 tmp.c: In function ‘main’:
 tmp.c:6:15: error: lvalue required as left operand of assignment
     6 |     if (i + 1 = 3) {}
       |               ^
-
+```
 解説
 
 代入の右辺は様々な計算式を書けるが、左辺は代入先の変数でなければならない。
@@ -422,10 +428,12 @@ tmp.c:6:15: error: lvalue required as left operand of assignment
 
 上記の例の場合は、「==」としなければいけないところ「=」としてしまったため、「左辺i+1 に右辺 3 を代入しようとしている」と解釈されてエラーが出てしまっています。if 文の中では比較演算子「==」を使いましょう。
 
-assignment to expression with array type
+### assignment to expression with array type
 
-訳：配列型の式への代入
+- 訳：配列型の式への代入
+- 
 エラーの生じるコード例
+```
 #include <stdio.h>
 
 int main()
@@ -434,17 +442,19 @@ int main()
     a = 1;
     return 0;
 }
+```
 
 ターミナルの表示
+```
 17_cast.c: In function ‘main’:
 17_cast.c:6:7: error: assignment to expression with array type
     6 |     a = 1;
       |       ^
-
+```
 解説
 
-代入の左辺と右辺の型が合っていない。
-数値同士であれば暗黙の変換が行われるし、 ポインタ値と非ポインタ値の混在であれば「warning: assignment to ‘ポインタ型’ from ‘型’ makes pointer from integer without a cast」になる。 このエラーの典型的な例は、 配列変数として宣言したのに添え字をつけずに代入しようとした場合である。
+- 代入の左辺と右辺の型が合っていない。
+- 数値同士であれば暗黙の変換が行われるし、 ポインタ値と非ポインタ値の混在であれば「warning: assignment to ‘ポインタ型’ from ‘型’ makes pointer from integer without a cast」になる。 このエラーの典型的な例は、 配列変数として宣言したのに添え字をつけずに代入しようとした場合である。
 
 
 
@@ -454,10 +464,11 @@ int main()
 -Wconversionで警告を出すこともできるようです。
 ポインタ・非ポインタのキャスト後述します
 
-variable or field ‘変数名’ declared void
+### variable or field ‘変数名’ declared void
 
-訳：変数またはフィールド...がvoidと宣言
+- 訳：変数またはフィールド...がvoidと宣言
 エラーの生じるコード例
+```
 #include <stdio.h>
 
 int main()
@@ -466,24 +477,22 @@ int main()
     void a;     // 怒られる
     return 0;
 }
-
+```
 ターミナルの表示
+```
 18_void.c: In function ‘main’:
 18_void.c:6:10: error: variable or field ‘a’ declared void
     6 |     void a;     // 怒られる
       |          ^
-
+```
 解説
-
-変数(あるいは構造体のメンバなど) var の型がvoidで宣言されている。
-voidは、関数の返値や引数がないことを示すものであり、 int や double のように、特定の変数の型にすることはできない。
-
-
-
-大学の課題程度であれば、voidを関数名以外で使うことはほぼ無いと思うので、あまり出くわさないエラーだと思います。
-ただしポインタの型として「void*」が使われることはあるみたいです（5行目）。興味があれば調べてみてください。
+- 変数(あるいは構造体のメンバなど) var の型がvoidで宣言されている。
+- voidは、関数の返値や引数がないことを示すものであり、 int や double のように、特定の変数の型にすることはできない。
+<!-- 
+ 授業でvoidを関数名以外で使うことはほぼ無いと思うので、あまり出くわさないエラーだと思います。
+ ただしポインタの型として「void*」が使われることはあるみたいです（5行目）。興味があれば調べてみてください。
 配列も同様です。void array[10]のようなことはできません。（ただし同様にvoid *p[10]のようなvoidポインタの配列はできるようです。）
-
+ -->
 
 ### ‘構造体名’ has no member named ‘メンバ名’
 
