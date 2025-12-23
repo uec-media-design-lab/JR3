@@ -42,7 +42,7 @@ int main()
 - 訳：入力の最後に宣言または文が必要です
 
 エラーの生じるコード例
-```c
+```c:parse_error_at_end_of_input.c
 #include <stdio.h>
 
 int main()
@@ -57,8 +57,9 @@ int main()
 
 ターミナルの表示
 ```bash
-2_parse_error_at_end_of_input.c: In function ‘main’:
-2_parse_error_at_end_of_input.c:10:1: error: expected declaration or statement at end of input
+ka002715@blue06:~/JR3/GDB$ gcc -O2 -Wall parse_error_at_end_of_input.c 
+parse_error_at_end_of_input.c: In function ‘main’:
+parse_error_at_end_of_input.c:10:1: error: expected declaration or statement at end of input
    10 | }
       | ^
 ```
