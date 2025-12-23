@@ -143,6 +143,43 @@ zenkaku.c:6:29: error: stray ‘\343’ in program
 - CEDだとカッコが全角になっている場合は`error: unknown type name ...`のようなエラーも出るようです。
 
 
+###  ‘｝’ undeclared (first use in this function)
+- 訳：‘}’ が宣言されていません。
+- 原因：`}`が全角になっている。
+
+エラーの生じるコード例
+```c:zenkaku2.c
+#include <stdio.h>
+
+int main()
+{
+    int i;
+    for (i = 0; i < 10; i++)
+    {
+        printf("%d\n", i);
+    ｝
+}// ↑ここが全角になっている
+```
+
+ターミナルの表示
+```bash
+ka002715@blue06:~/JR3/GDB$ gcc -O2 -Wall zenkaku2.c
+zenkaku2.c: In function ‘main’:
+zenkaku2.c:9:5: error: ‘｝’ undeclared (first use in this function)
+    9 |     ｝
+      |     ^~
+zenkaku2.c:9:5: note: each undeclared identifier is reported only once for each function it appears in
+zenkaku2.c:9:7: error: expected ‘;’ before ‘}’ token
+    9 |     ｝
+      |       ^
+      |       ;
+   10 | }// ↑ここが全角になっている
+      | ~      
+zenkaku2.c:10:1: error: expected declaration or statement at end of input
+   10 | }// ↑ここが全角になっている
+      | ^
+```
+
 ### missing terminating " character
 
 - 訳：終了文字「"」がありません
