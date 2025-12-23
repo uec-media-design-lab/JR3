@@ -15,7 +15,7 @@
 
 ### エラーの生じるコード例（1）
 - `&`のつけ忘れ
-```c
+```c:need_and.c
 #include <stdio.h>
 
 int main()
