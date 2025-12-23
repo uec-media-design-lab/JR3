@@ -128,7 +128,9 @@ int main()
 
 ターミナルの表示
 ```bash
-4_parse_error_begfore_character.c:6:29: error: stray ‘\343’ in program
+ka002715@blue06:~/JR3/GDB$ gcc -O2 -Wall parse_error_before_character.c 
+parse_error_before_character.c: In function ‘main’:
+parse_error_before_character.c:6:29: error: stray ‘\343’ in program
     6 |     for (i = 0; i < 10; i++)　// ここに全角スペースがある
       |                             ^~
 ```
