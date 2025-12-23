@@ -5,8 +5,8 @@
 - 誤り・不明瞭な記述・未記載のエラーがあれば 小泉 `koizumi.naoya@uec.ac.jp` まで連絡ください。
 
 
-## 代表的なもの
-### `i' undeclared (first use in this function)
+# 代表的なもの
+## `i' undeclared (first use in this function)
 - 訳：`i' は宣言されていません (この関数で初めて使用されます)
 
 - エラーの生じるコード例
@@ -38,9 +38,10 @@ undeclared.c:5:10: note: each undeclared identifier is reported only once for ea
 - また、長い名前の変数や綴りが難しい変数では、タイプミスをしている可能性も あるので、その点も充分にチェックしてください。
 
 
-### expected declaration or statement at end of input
+## expected declaration or statement at end of input
 
 - 訳：入力の最後に宣言または文が必要です
+- 原因：多くの場合はカッコのつけ忘れ
 
 エラーの生じるコード例
 ```c:parse_error_at_end_of_input.c
@@ -74,6 +75,7 @@ parse_error_at_end_of_input.c:10:1: error: expected declaration or statement at 
 ### expected ‘;’ before ‘}’ token
 
 - 訳：‘}’ トークンの前に ‘;’ が必要です
+- 原因：`;`その前後 が抜けているか、その前後後 に対応する { が抜けている
 
 エラーの生じるコード例
 ```c
@@ -102,7 +104,7 @@ int main()
 
 解説
 
-- expected ‘;’ before ‘}’ token 関連のエラーが出た場合は、エラーになった行の前の 行も確認しましょう。また、`}` 以外だけでなく、他の文字が入る こともあります。その文字の前に間違いがないか調べてみてください。
+- expected ‘;’ before ‘}’ token 関連のエラーが出た場合は、エラーになった行の前の行も確認しましょう。また、`}` 以外だけでなく、他の文字が入る こともあります。その文字の前に間違いがないか調べてみてください。
 - この例では、最後の ; が抜けてい ます。また、その } に対応する { が抜けている場 合もあるので、確認しましょう。
 - ネット上の資料では "parse error before"という表示が載っていますが、CEDでは`expected ‘;’ before …` と表示されるようです。
 
