@@ -10,7 +10,7 @@
 - 訳：`i' は宣言されていません (この関数で初めて使用されます)
 
 - エラーの生じるコード例
-```c
+```c:undeclared.c 
 #include <stdio.h>
 
 int main()
@@ -24,11 +24,12 @@ int main()
 
 ターミナルの表示
 ```bash
-1_undeclared.c: In function ‘main’:
-1_undeclared.c:5:10: error: ‘i’ undeclared (first use in this function)
+ka002715@blue06:~/JR3/GDB$ gcc -O2 -Wall undeclared.c 
+undeclared.c: In function ‘main’:
+undeclared.c:5:10: error: ‘i’ undeclared (first use in this function)
     5 |     for (i = 0; i < 10; i++)
       |          ^
-1_undeclared.c:5:10: note: each undeclared identifier is reported only once for each function it appears in
+undeclared.c:5:10: note: each undeclared identifier is reported only once for each function it appears in
 ```
 
 解説
