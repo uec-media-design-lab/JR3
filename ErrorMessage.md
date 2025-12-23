@@ -113,9 +113,10 @@ parse_error_before.c:8:26: error: expected ‘;’ before ‘}’ token
 ### stray ‘\343’ in program
 
 - 訳：プログラム内の迷子の「\343」
+- 原因：どこかに全角スペースが入っている。
 
 エラーの生じるコード例
-```c
+```c:zenkaku.c
 #include <stdio.h>
 
 int main()
@@ -130,9 +131,9 @@ int main()
 
 ターミナルの表示
 ```bash
-ka002715@blue06:~/JR3/GDB$ gcc -O2 -Wall parse_error_before_character.c 
-parse_error_before_character.c: In function ‘main’:
-parse_error_before_character.c:6:29: error: stray ‘\343’ in program
+ka002715@blue06:~/JR3/GDB$ gcc -O2 -Wall zenkaku.c
+zenkaku.c: In function ‘main’:
+zenkaku.c:6:29: error: stray ‘\343’ in program
     6 |     for (i = 0; i < 10; i++)　// ここに全角スペースがある
       |                             ^~
 ```
