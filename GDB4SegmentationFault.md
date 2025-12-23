@@ -28,9 +28,10 @@ int main()
 
 ターミナルの表示　コンパイル時
 ```bash
-8_segmentation_fault.c: In function ‘main’:
-8_segmentation_fault.c:6:13: warning: format ‘%d’ expects argument of type ‘int *’, but argument 2 has type ‘int’ [-Wformat=]
-    6 |     scanf("%d", i);    # 本当は「&i」としなければいけない（アドレスを渡す必要があるため）
+ka002715@blue06:~/JR3/GDB$ gcc -g3 need_and.c
+need_and.c: In function ‘main’:
+need_and.c:12:13: warning: format ‘%d’ expects argument of type ‘int *’, but argument 2 has type ‘int’ [-Wformat=]
+   12 |     scanf("%d", i);    // 本当は「&i」としなければいけない
       |            ~^   ~
       |             |   |
       |             |   int
