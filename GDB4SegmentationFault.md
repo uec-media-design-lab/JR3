@@ -14,7 +14,9 @@
 
 
 ### エラーの生じるコード例（1）
-- `&`のつけ忘れ
+`&`のつけ忘れ
+
+- コード例
 ```c:need_and.c
 #include <stdio.h>
 
@@ -26,7 +28,7 @@ int main()
 }
 ```
 
-ターミナルの表示　コンパイル時
+- ターミナルの表示 コンパイル時
 ```bash
 ka002715@blue06:~/JR3/GDB$ gcc -g3 need_and.c
 need_and.c: In function ‘main’:
@@ -37,16 +39,15 @@ need_and.c:12:13: warning: format ‘%d’ expects argument of type ‘int *’,
       |             |   int
       |             int *
 ```
+> 警告は出ますが、コンパイルは通ります。
 
-- 警告は出ますが、コンパイルは通ります。
-
-ターミナルの表示　実行時
+- ターミナルの表示　実行時
 ```bash
 $ ./a.out
-1
+1 # キーボードから入力する
 Segmentation fault (コアダンプ)
 ```
-- 実行すると、Segmentation fault が出ます。
+> 実行すると、Segmentation fault が出ます。
 
 解説
 
