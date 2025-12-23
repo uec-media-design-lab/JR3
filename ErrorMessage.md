@@ -23,7 +23,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 1_undeclared.c: In function ‘main’:
 1_undeclared.c:5:10: error: ‘i’ undeclared (first use in this function)
     5 |     for (i = 0; i < 10; i++)
@@ -56,7 +56,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 2_parse_error_at_end_of_input.c: In function ‘main’:
 2_parse_error_at_end_of_input.c:10:1: error: expected declaration or statement at end of input
    10 | }
@@ -88,7 +88,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 3_parse_error_before.c: In function ‘main’:
 3_parse_error_before.c:8:26: error: expected ‘;’ before ‘}’ token
     8 |         printf("%d\n", i)
@@ -123,7 +123,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 4_parse_error_begfore_character.c:6:29: error: stray ‘\343’ in program
     6 |     for (i = 0; i < 10; i++)　// ここに全角スペースがある
       |                             ^~
@@ -153,7 +153,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 5_unterminated_string_or_character_constant.c: In function ‘main’:
 5_unterminated_string_or_character_constant.c:8:16: warning: missing terminating " character
     8 |         printf("%d\n, i);
