@@ -78,7 +78,7 @@ parse_error_at_end_of_input.c:10:1: error: expected declaration or statement at 
 - 原因：`;`が抜けているか、前後に変な文字が入っている（`全角スペース`とか）か、前後に`{`や`}`が抜けている
 
 エラーの生じるコード例
-```c
+```c:parse_error_before.c
 #include <stdio.h>
 
 int main()
@@ -93,12 +93,14 @@ int main()
 
 ターミナルの表示
 ```bash
-3_parse_error_before.c: In function ‘main’:
-3_parse_error_before.c:8:26: error: expected ‘;’ before ‘}’ token
-    8 |         printf("%d\n", i)
+ka002715@blue06:~/JR3/GDB$ gcc -O2 -Wall parse_error_before.c 
+parse_error_before.c: In function ‘main’:
+parse_error_before.c:8:26: error: expected ‘;’ before ‘}’ token
+    8 |         printf("%d\n", i) // ;が抜けている
       |                          ^
       |                          ;
     9 |     }
+      |     ~                     
       |     ~ 
 ```
 
