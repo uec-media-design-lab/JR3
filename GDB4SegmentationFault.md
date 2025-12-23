@@ -7,13 +7,14 @@
 - gdbコマンドで実行します。 例：`gdb ./a.out`   
 - (gdb) みたいに表示されたら、runと入力します。 ブレークポイントなどの設定もできます。気になったら調べてみてください。
 
-# Segmentation fault（コアダンプ）
+# Segmentation fault（コアダンプ）  とは
 - 訳：セグメンテーション違反
 
+# Segmentation faultの生じるコード例
 以下はあくまで Segmentation fault の一例です。これ以外の理由でSegmentation fault が出ている場合は原因の特定が大変なので、gdb などのデバッガを使いましょう。
 
 
-### Segmentation faultの生じるコード例（1）:`&`のつけ忘れ
+## 1:`&`のつけ忘れ
 
 - コード例
 ```c:need_and.c
