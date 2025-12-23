@@ -196,7 +196,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 tmp.c: In function ‘main’:
 tmp.c:6:20: error: too few arguments to function ‘pow’
     6 |     printf("%f\\n", pow(10));
@@ -226,11 +226,11 @@ int main()
     printf("%f\n", pow(10, 2, 3));
     return 0;
 }
+```
 
-
-ターミナルの表示
-11_too_many_arguments_to_function.c: In function ‘main’:
-11_too_many_arguments_to_function.c:6:20: error: too many arguments to function ‘pow’
+ターミナルの表表
+```bash
+1_too_many_arguments_to_function.c: In function ‘main’:1_too_many_arguments_to_function.c:6:20: error: too many arguments to function ‘pow’
     6 |     printf("%f\\n", pow(10, 2, 3));
       |                    ^~~
 In file included from /usr/include/features.h:486,
@@ -248,7 +248,7 @@ In file included from /usr/include/features.h:486,
 
 ### そのようなファイルやディレクトリはありません
 エラーの生じるコード例
-```c
+`````c
 #include <stdio.h>
 #include <stdlb.h>    // stdlib.h のタイプミス
 
@@ -260,7 +260,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 12_no_such_file_or_directory.c:2:10: fatal error: stdlb.h: そのようなファイルやディレクトリはありません
     2 | #include <stdlb.h>    // stdlib.h のタイプミス
       |          ^~~~~~~~~
@@ -285,7 +285,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 13_invalid_preprocessing_directive.c:2:2: error: invalid preprocessing directive #includ; did you mean #include?
     2 | #includ <math.h>
       |  ^~~~~~
@@ -315,7 +315,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 14_redeclaration.c: In function ‘main’:
 14_redeclaration.c:6:12: error: conflicting types for ‘i’; have ‘double’
     6 |     double i;
@@ -352,7 +352,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 14-2_redeclaration.c: In function ‘main’:
 14-2_redeclaration.c:6:9: error: redeclaration of ‘i’ with no linkage
     6 |     int i;
@@ -387,14 +387,14 @@ int main()
 ```
 
 実行結果
-```
+```bash
 $ ./a.out
 内側のiは 2
 外側のiは 1
 ```
  
 通常、何の警告も出ずコンパイルできますが、-Wshadowオプションをつけてコンパイルすると警告を出してくれます。
-```
+```bash
 $ gcc 14-3_redeclaration.c -Wshadow
 14-3_redeclaration.c: In function ‘main’:
 14-3_redeclaration.c:7:13: warning: declaration of ‘i’ shadows a previous local [-Wshadow]
@@ -421,7 +421,7 @@ int main()
 }
 ```
 ターミナルの表示
-```
+```bash
 tmp.c: In function ‘main’:
 tmp.c:6:15: error: lvalue required as left operand of assignment
     6 |     if (i + 1 = 3) {}
@@ -450,7 +450,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 17_cast.c: In function ‘main’:
 17_cast.c:6:7: error: assignment to expression with array type
     6 |     a = 1;
@@ -484,7 +484,7 @@ int main()
 }
 ```
 ターミナルの表示
-```
+```bash
 18_void.c: In function ‘main’:
 18_void.c:6:10: error: variable or field ‘a’ declared void
     6 |     void a;     // 怒られる
@@ -614,7 +614,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 21_operator.c: In function ‘main’:
 21_operator.c:16:12: error: invalid operands to binary == (have ‘vector’ and ‘vector’)
    16 |     if (v1 == v2)    // 自分で定義した構造体に対して二項演算子は使用できません。
@@ -648,7 +648,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 6_undefined_reference_to.c: In function ‘main’:
 6_undefined_reference_to.c:8:9: warning: implicit declaration of function ‘prnitf’; did you mean ‘printf’? [-Wimplicit-function-declaration]
     8 |         prnitf("%d\n", i);
@@ -687,7 +687,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 1_reaches_end_of_no-void.c: In function ‘func’:
 1_reaches_end_of_no-void.c:8:1: warning: control reaches end of non-void function [-Wreturn-type]
     8 | }
@@ -725,7 +725,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 2_return_type_default.c:3:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
     3 | func(int n)    // 返り値がint型の関数
       | ^~~~
@@ -756,7 +756,7 @@ int main()
 }
 ```
 ターミナルの表示
-```
+```bash
 3_used_as_truth_value.c: In function ‘main’:
 3_used_as_truth_value.c:6:9: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
     6 |     if (a = 1)
@@ -801,7 +801,7 @@ int main()
 }
 ```
 ターミナルの表示
-```
+```bash
 4_unused_variable.c: In function ‘main’:
 4_unused_variable.c:5:22: warning: variable ‘b’ set but not used [-Wunused-but-set-variable]
     5 |     int i, j, a[10], b[10];    // jはどこにも使っていない
@@ -839,7 +839,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 $ gcc TA1_uninitialized_variable.c -Wall
 TA1_uninitialized_variable.c: In function ‘main’:
 TA1_uninitialized_variable.c:6:5: warning: ‘i’ is used uninitialized [-Wuninitialized]
@@ -874,7 +874,7 @@ int main()
 ```
 
 ターミナルの表示
-```
+```bash
 TA3_stdlib_malloc.c: In function ‘main’:
 TA3_stdlib_malloc.c:8:15: warning: implicit declaration of function ‘malloc’ [-Wimplicit-function-declaration]
     8 |     p = (int*)malloc(sizeof(int) * len);    // malloc を使う
@@ -914,7 +914,7 @@ int main()
 
 
 実行結果は以下
-```
+```bash
 %dだと：「1」
     %cだと：「」
 ```
@@ -935,7 +935,7 @@ int main()
 
 
 「Hello」と入力すると…
-```
+```bash
 $ ./a.out
     Hello
     Hell
@@ -961,6 +961,7 @@ gdbコマンドで実行します。 例：gdb ./a.out
 (gdb) みたいに表示されたら、runと入力します。 ブレークポイントなどの設定もできます。気になったら調べてみてください。 
 
 エラーの生じるコード例（1）
+```c
 #include <stdio.h>
 
 int main()
@@ -969,9 +970,10 @@ int main()
     scanf("%d", i);    // 本当は「&i」としなければいけない
                        // （アドレスを渡す必要があるため）
 }
-
+```
 
 ターミナルの表示　コンパイル時
+```c
 8_segmentation_fault.c: In function ‘main’:
 8_segmentation_fault.c:6:13: warning: format ‘%d’ expects argument of type ‘int *’, but argument 2 has type ‘int’ [-Wformat=]
     6 |     scanf("%d", i);    # 本当は「&i」としなければいけない（アドレスを渡す必要があるため）
@@ -979,15 +981,16 @@ int main()
       |             |   |
       |             |   int
       |             int *
-
+```
 
 
 警告は出ますが、コンパイルは通ります。
 ターミナルの表示　実行時
+```bash
 $ ./a.out
 1
 Segmentation fault (コアダンプ)
-
+```
 
 
 実行すると、Segmentation fault が出ます。
@@ -1000,6 +1003,7 @@ Segmentation fault (コアダンプ)
 
 
 エラーの生じるコード例（2）：メモリ違反
+```c
 #include <stdio.h>
 
 int main()
@@ -1011,17 +1015,19 @@ int main()
     }
     return 0;
 }
-
+```
 
 実行結果
+```bash
 $ ./a.out
 *** stack smashing detected ***: terminated
 中止 (コアダンプ)
-
+```
 
 
 CEDの場合、Segmentation Fault とはならず、上記のようなエラーになるようです。 
 GDBの場合
+```bash
 (gdb) run
 Starting program: /home0/y2024/s2430064/TA_JRE3/error_sample/SegmentationFault/a.out 
 [Thread debugging using libthread_db enabled]
@@ -1031,11 +1037,13 @@ Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
 Program received signal SIGABRT, Aborted.
 __pthread_kill_implementation (no_tid=0, signo=6, threadid=140737351423808) at ./nptl/pthread_kill.c:44
 44      ./nptl/pthread_kill.c: そのようなファイルやディレクトリはありません.
+```
 
 
 
 （この場合はどこでエラーが起きているのか分かりづらい） 
 多くの人は、上記のような明らかに配列の範囲外にアクセスすることよりも、以下のような事例でSegmentation fault が起こることの方が多いと思います。
+```c
 #include <stdio.h>
 
 // フィボナッチ数列を求めたい
@@ -1050,7 +1058,7 @@ int main()
     }
     return 0;
 }
-
+```
 
 
 for文内でi+2番目までアクセスしているので、正しくは「for (int i = 0; i < 10-2; i++)」としなければいけません。 
@@ -1058,6 +1066,7 @@ for文内でi+2番目までアクセスしているので、正しくは「for (
 
 エラーの生じるコード例（3）：無限再帰（または再帰が長すぎる）
 プログラムの例
+```c
 #include <stdio.h>
 
 void loop()
@@ -1070,16 +1079,18 @@ int main()
     loop();
     return 0;
 }
-
+```
 
 実行結果
+```bash
 t$ ./a.out
 Segmentation fault (コアダンプ)
-
+```
 
 
 これだけだとどこで問題が起きているのか分かりません。 
 GDBでデバッグした際の表示
+```bash
 (gdb) run
 Starting program: /home0/y2024/s2430064/TA_JRE3/error_sample/SegmentationFault/a.out 
 [Thread debugging using libthread_db enabled]
@@ -1088,13 +1099,14 @@ Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
 Program received signal SIGSEGV, Segmentation fault.
 0x0000555555555136 in loop () at 2_recursion_infinity.c:5
 5           loop();    // これではloopが終了条件なく無限に呼び出されてしまいます
-
+```
 
 
 5行目で問題が起こっているよ、と教えてくれます。 
 
 エラーの生じるコード例（4）：Null ポインタの参照
 プログラムの例
+```c
 #include <stdio.h>
 
 int main()
@@ -1104,14 +1116,16 @@ int main()
     printf("%d\n", a);
     return 0;
 }
-
+```
 
 実行結果
+```bash
 $ ./a.out
 Segmentation fault (コアダンプ)
-
+```
 
 GDBでデバッグした際の表示
+```bash
 (gdb) run
 Starting program: /home0/y2024/s2430064/TA_JRE3/error_sample/SegmentationFault/a.out 
 [Thread debugging using libthread_db enabled]
@@ -1120,7 +1134,7 @@ Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
 Program received signal SIGSEGV, Segmentation fault.
 0x0000555555555161 in main () at 3_nullptr.c:6
 6           int a = *ptr;    // NULLポインタを参照しているためSegmentation Faultが発生
-
+```bash
 
 
 6行目で問題が起こっているよ、と教えてくれます。 
@@ -1128,13 +1142,6 @@ Program received signal SIGSEGV, Segmentation fault.
 
 
 
-# この資料の参照元
-
-gcc のエラーメッセージの読み方
-Error messages of gcc
-コンパイル時に出てくる代表的なエラー
-初心者必見！C言語でのSegmentation Faultの解決方法3選 
-Segmentation Faultの傾向と対策 - minus9d's diary 
 
 
 # なぜこのページを作ったのか？
