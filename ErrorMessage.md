@@ -75,7 +75,7 @@ parse_error_at_end_of_input.c:10:1: error: expected declaration or statement at 
 ### expected ‘;’ before ‘}’ token
 
 - 訳：‘}’ トークンの前に ‘;’ が必要です
-- 原因：`;`その前後 が抜けているか、その前後後 に対応する { が抜けている
+- 原因：`;`が抜けているか、前後に変な文字が入っている（`全角スペース`とか）か、前後に`{`や`}`が抜けている
 
 エラーの生じるコード例
 ```c
