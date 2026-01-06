@@ -295,7 +295,8 @@ In file included from /usr/include/features.h:486,
 
 ### そのようなファイルやディレクトリはありません
 エラーの生じるコード例
-`````c
+
+```c
 #include <stdio.h>
 #include <stdlb.h>    // stdlib.h のタイプミス
 
