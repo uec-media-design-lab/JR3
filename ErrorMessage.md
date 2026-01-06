@@ -288,6 +288,7 @@ In file included from /usr/include/features.h:486,
       | ^~~~~~~~~~~~~~
 ```
 
+
 解説
 - pow() は引数が 2つなのに、3つも与えているので、エラーが出ています。 引数として何を与えるかを確認して、きちんと引数を与えましょう。
 
@@ -312,6 +313,7 @@ int main()
       |          ^~~~~~~~~
 compilation terminated.
 ```
+
 解説
 - stdlb.h というファイルは存在しないのにincludeしようとしているため、エラーになります。 
 
